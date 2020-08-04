@@ -1,12 +1,14 @@
+// import react
 import React from 'react';
 
+// import Landig
+import Landing from './pages/landing';
+
+// import css
+import './assets/styles/global.css';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header" />
-      <h1>Hello World</h1>
-    </div>
-  );
+  return <Landing />;
 }
 
 export default App;
