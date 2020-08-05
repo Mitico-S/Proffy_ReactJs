@@ -1,8 +1,18 @@
-// import React
+// Import react
 import React from 'react';
 
-function TeachersForm() {
-  return <h1>Teachers Form</h1>;
+// import logoImg
+import logoImg from '../../assets/images/logo.svg';
+
+// import PageHeader
+import PageHeader from '../../components/PageHeader';
+
+function TeachersList() {
+  return (
+    <div id="page-teacher-list" className="container">
+      <PageHeader />
+    </div>
+  );
 }
 
-export default TeachersForm;
+export default TeachersList;
