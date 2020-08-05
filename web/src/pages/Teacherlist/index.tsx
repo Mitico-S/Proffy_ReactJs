@@ -15,6 +15,8 @@ import './style.css';
 // import page header
 import PageHeader from '../../components/PageHeader';
 
+
+import TeacherItem from '../../components/TeacherItem';
 function TeachersList() {
   return (
     <div id="page-teacher-list" className="container">
@@ -37,6 +39,13 @@ function TeachersList() {
           </div>
         </form>
       </PageHeader>
+
+      <main>
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+        <TeacherItem />
+      </main>
     </div>
   );
 }
