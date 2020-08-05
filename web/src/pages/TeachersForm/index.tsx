@@ -7,12 +7,12 @@ import logoImg from '../../assets/images/logo.svg';
 // import PageHeader
 import PageHeader from '../../components/PageHeader';
 
-function TeachersList() {
+function TeacherForm() {
   return (
     <div id="page-teacher-list" className="container">
-      <PageHeader />
+      <PageHeader title="Que incrível que você quer dar aulas."/>
     </div>
   );
 }
 
-export default TeachersList;
+export default TeacherForm;
