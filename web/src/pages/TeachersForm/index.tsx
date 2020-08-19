@@ -11,6 +11,7 @@ import PageHeader from '../../components/PageHeader';
 
 import './styles.css';
 import Input from '../../components/input';
+import Textarea from '../../components/Textarea';
 
 function TeacherForm() {
   return (
@@ -34,24 +35,16 @@ function TeacherForm() {
           <Input name="subject" label="Matéria" />
           <Input name="cost" label="Custo da sua hora por aula" />
           <Input name="" label="WhatsApp" />
+          <Textarea name="bio" label="Biografia" />
         </fieldset>
 
-        {/* <fieldset>
-          <legend>Horários disponíveis</legend>
-
-          <Input name="name" label="Nome Completo" />
-          <Input name="avatar" label="Avatar" />
-          <Input name="whatsapp" label="WhatsApp" />
-        </fieldset> */}
         <footer>
           <p>
             <img src={warningIcon} alt="Aviso importante" />
             Importante! <br />
             Preencha todos os dados
           </p>
-          <button id="nhaa" type="button">
-            Salvar cadastro
-          </button>
+          <button type="button">Salvar cadastro</button>
         </footer>
       </main>
     </div>
