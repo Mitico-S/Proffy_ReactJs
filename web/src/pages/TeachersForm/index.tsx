@@ -1,17 +1,12 @@
 // Import react
 import React from 'react';
-
-// import logoImg
 import logoImg from '../../assets/images/logo.svg';
-
 import warningIcon from '../../assets/images/icons/warning.svg';
-
-// import PageHeader
 import PageHeader from '../../components/PageHeader';
-
 import './styles.css';
-import Input from '../../components/input';
+import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
+import Select from '../../components/Select';
 
 function TeacherForm() {
   return (
@@ -32,7 +27,7 @@ function TeacherForm() {
         <fieldset id="page-teacher-nhaa">
           <legend>Sobre a aula</legend>
 
-          <Input name="subject" label="Matéria" />
+          <Select name="subject" label="Matéria" />
           <Input name="cost" label="Custo da sua hora por aula" />
           <Input name="" label="WhatsApp" />
           <Textarea name="bio" label="Biografia" />
