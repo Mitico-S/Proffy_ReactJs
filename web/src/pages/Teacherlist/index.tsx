@@ -10,34 +10,21 @@ import backIcon from '../../assets/images/icons/back.svg';
 import logoImg from '../../assets/images/logo.svg';
 
 // import style.css
-import './style.css';
+import './styles.css';
 
 // import page header
 import PageHeader from '../../components/PageHeader';
 
-
 import TeacherItem from '../../components/TeacherItem';
+import Input from '../../components/input';
+
 function TeachersList() {
   return (
     <div id="page-teacher-list" className="container">
       <PageHeader title="Estes são os Proffys disponíveis.">
-        <form action="" id="search-teachers">
-
-          <div className="input-block"> 
-          <label htmlFor="subject">Matéria</label>
-            <input type="text" id="subject"/>
-          </div>
-
-          <div className="input-block"> 
-          <label htmlFor="week_day">Dia da semana</label>
-            <input type="text" id="week_day"/>
-          </div>
-
-          <div className="input-block"> 
-          <label htmlFor="time">Hora</label>
-            <input type="text" id="time"/>
-          </div>
-        </form>
+        <Input name="subject" label="Matéria" />
+        <Input name="week_day" label="Dia da semana" />
+        <Input type="time" name="time" label="Hora" />
       </PageHeader>
 
       <main>
