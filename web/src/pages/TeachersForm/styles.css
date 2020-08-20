@@ -23,7 +23,7 @@
   margin-top: 6.4rem;
 }
 #page-teacher-form main fieldset legend {
-  font: 700 2.4rem Archivo;
+  font: 700 2.4rem 'Archivo';
   color: var(--color-text-title);
   margin-bottom: 2.4rem;
   display: flex;
@@ -34,6 +34,23 @@
   border-bottom: 1px solid var(--color-line-in-white);
 }
 
+#page-teacher-form main fieldset legend button {
+  background: none;
+  border: 0;
+  color: var(--color-primary);
+  font: 700 1.6rem 'Archivo';
+  cursor: pointer;
+  transition: color 0.2s;
+}
+#page-teacher-form main fieldset legend button:hover {
+  color: var(--color-primary-dark);
+}
+
+#page-teacher-form main fieldset .input-block + .textarea-block,
+#page-teacher-form main fieldset .select-block + .input-block {
+  margin-top: 2.4rem;
+}
+
 #page-teacher-form main label {
   color: var(--color-text-complement);
 }
@@ -41,7 +58,7 @@
   background: none;
   border: 0;
   color: var(--color-primary);
-  font: 700 1.6rem Archivo;
+  font: 700 1.6rem 'Archivo';
   cursor: pointer;
   transition: color 0.2s;
 }
@@ -54,6 +71,11 @@
 }
 #page-teacher-form main fieldset .select-block + .input-block {
   margin-top: 2.4rem;
+}
+#page-teacher-form main footer.schedule-item {
+  display: grid;
+  grid-template-columns: 2fr 1f 1f;
+  column-gap: 1.6rem;
 }
 
 #page-teacher-form main footer {
@@ -81,7 +103,7 @@
   border: 0;
   border-radius: 0.8rem;
   cursor: pointer;
-  font: 700 1.6rem Archivo;
+  font: 700 1.6rem 'Archivo';
   display: flex;
   align-items: center;
   justify-content: center;
