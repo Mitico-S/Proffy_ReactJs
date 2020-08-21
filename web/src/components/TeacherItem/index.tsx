@@ -3,38 +3,54 @@ import React from 'react';
 import './styles.css';
 // import whatsappIcon
 import whasappIcon from '../../assets/images/icons/whatsapp.svg';
+import api from '../../services/api';
+export interface Teacher {
+  id: number;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: string;
+}
 
-function TeacherItem() {
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
+  function createNewConnection() {
+    api.post('/connection', {
+      user_id: teacher.id,
+    });
+  }
+
   return (
     <article className="teacher-item">
       <header>
-        <img
-          src="https://avatars2.githubusercontent.com/u/56173070?s=460&u=4d174a79863bcdb487c36553e6dc4f6c0497f195&v=4"
-          alt="João Pedro Alves"
-        />
+        <img src={teacher.avatar} alt={teacher.name} />
         <div>
-          <strong>João Pedro Alves</strong>
-          <span>Js</span>
+          <strong>{teacher.name}</strong>
+          <span>{teacher.subject}</span>
         </div>
       </header>
-      <p>
-        Entusiasta de Devenvolvimento de games e pra web.
-        <br></br>
-        Gosto de construir aplicações interativas e atraentes para o usuário,
-        para que o mesmo tenha uma boa experiência usando um site feito por mim.
-      </p>
+      <p>{teacher.bio}</p>
       <footer>
         <p>
           Preço/hora
-          <strong>R$ 40,00</strong>
+          <strong>R$: {teacher.cost},00</strong>
         </p>
-        <button type="button">
+        <a
+          target="_blank"
+          onClick={createNewConnection}
+          href={`https://wa.me/${teacher.whatsapp}`}
+        >
           <img src={whasappIcon} alt="WhatsApp" />
           Entrar em contato
-        </button>
+        </a>
       </footer>
     </article>
   );
-}
+};
 
 export default TeacherItem;
