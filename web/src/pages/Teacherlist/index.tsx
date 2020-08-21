@@ -66,7 +66,7 @@ function TeachersList() {
               { value: '3', label: 'Quarta-Feira' },
               { value: '4', label: 'Quinta-Feira' },
               { value: '5', label: 'Sexta-Feira' },
-              { value: '6', label: 'Sábado' },
+              { value: '6', label: 'Domingo' },
             ]}
           />
 
