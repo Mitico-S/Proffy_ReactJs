@@ -1,43 +1,99 @@
-import { View, Image, Text } from 'react-native';
-import React from 'react';
-import styles from './styles';
+import React, { useState } from 'react';
+import { View, Image, Text, Linking } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import heartOutlinIcon from '../../assets/images/icons/heart-outline.png';
+import heartOutlineIcon from '../../assets/images/icons/heart-outline.png';
 import unfavoriteIcon from '../../assets/images/icons/unfavorite.png';
 import whatsappIcon from '../../assets/images/icons/whatsapp.png';
 
-function TeacherItem() {
+import styles from './styles';
+import api from '../../services/api';
+
+export interface Teacher {
+  avatar: string;
+  bio: string;
+  cost: number;
+  id: number;
+  name: string;
+  subject: string;
+  whatsapp: number;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher;
+  favorited: boolean;
+}
+
+const TeacherItem: React.FC<TeacherItemProps> = ({
+  teacher,
+  favorited,
+}: TeacherItemProps) => {
+  const [isFavorited, setIsFavorited] = useState(favorited);
+
+  function handleLinkToWhatsapp() {
+    api.post('connections', {
+      user_id: teacher.id,
+    });
+    Linking.openURL(`whatsapp://send?phone=${teacher.whatsapp}`);
+  }
+
+  async function handleToggleFavorite() {
+    const favorites = await AsyncStorage.getItem('favorites');
+    let favoritesArray = [];
+
+    if (favorites) {
+      favoritesArray = JSON.parse(favorites);
+    }
+
+    if (isFavorited) {
+      const favoriteIndex = favoritesArray.findIndex((teacherItem: Teacher) => {
+        return teacherItem.id === teacher.id;
+      });
+      favoritesArray.splice(favoriteIndex, 1);
+      setIsFavorited(false);
+    } else {
+      favoritesArray.push(teacher);
+      setIsFavorited(true);
+    }
+
+    await AsyncStorage.setItem('favorites', JSON.stringify(favoritesArray));
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
-        <Image
-          style={styles.avatar}
-          source={{
-            uri:
-              'https://avatars2.githubusercontent.com/u/56173070?s=400&u=4d174a79863bcdb487c36553e6dc4f6c0497f195&v=4',
-          }}
-        />
+        <Image style={styles.avatar} source={{ uri: teacher.avatar }} />
 
         <View style={styles.profileInfo}>
-          <Text style={styles.name}>João Pedro Alves</Text>
-          <Text style={styles.subject}>Js</Text>
+          <Text style={styles.name}>{teacher.name}</Text>
+          <Text style={styles.subject}>{teacher.subject}</Text>
         </View>
       </View>
-      <Text style={styles.bio}>
-        Dev fullstack em construção, ux and ui design
-      </Text>
+      <Text style={styles.bio}>{teacher.bio}</Text>
+
       <View style={styles.footer}>
         <Text style={styles.price}>
-          Preço/Hora {'   '}
-          <Text style={styles.priceValue}>R$ 120,00</Text>
+          Preço/hora {'   '}
+          <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
         </Text>
+
         <View style={styles.buttonsContainer}>
-          <RectButton style={[styles.favoriteButton, styles.favorited]}>
-            {/* <Image source={heartOutlinIcon} /> */}
-            <Image source={unfavoriteIcon} />
+          <RectButton
+            style={[styles.favoriteButton, isFavorited ? styles.favorited : {}]}
+            onPress={handleToggleFavorite}
+          >
+            {isFavorited ? (
+              <Image source={unfavoriteIcon} />
+            ) : (
+              <Image source={heartOutlineIcon} />
+            )}
           </RectButton>
-          <RectButton style={styles.contactButton}>
+
+          <RectButton
+            onPress={handleLinkToWhatsapp}
+            style={styles.contactButton}
+          >
             <Image source={whatsappIcon} />
             <Text style={styles.contactButtonText}>Entrar em contato</Text>
           </RectButton>
@@ -45,6 +101,6 @@ function TeacherItem() {
       </View>
     </View>
   );
-}
+};
 
 export default TeacherItem;
